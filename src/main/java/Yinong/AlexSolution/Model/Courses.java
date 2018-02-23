@@ -20,10 +20,9 @@ public class Courses{
     @OneToMany(mappedBy = "courses")
     private Set<PreRequisite> preRequisites;
 
-    public Courses(String courseName, Set<User> users, Set<PreRequisite> preRequisites) {
+    public Courses(String courseName, Set<User> users) {
         this.courseName = courseName;
         this.users = users;
-        this.preRequisites = preRequisites;
     }
 
     public Courses(){

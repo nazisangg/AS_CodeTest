@@ -18,9 +18,8 @@ public class PreRequisite {
     @JoinColumn(name = "courses_courseid",referencedColumnName = "courseid")
     private Courses courses;
 
-    public PreRequisite(Long preRequisiteCourse, Courses courses) {
+    public PreRequisite(Long preRequisiteCourses) {
         this.preRequisiteCourse = preRequisiteCourse;
-        this.courses = courses;
     }
 
     public PreRequisite(){

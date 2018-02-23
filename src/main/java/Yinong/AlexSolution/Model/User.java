@@ -25,10 +25,9 @@ public class User{
     )
     private Set<Courses> courses;
 
-    public User(String username, String password, Set<Courses> courses) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.courses = courses;
     }
 
     public User(){
@@ -65,5 +64,9 @@ public class User{
 
     public void setCourses(Set<Courses> courses) {
         this.courses = courses;
+    }
+
+    public void addCourses(Courses course){
+        this.courses.add(course);
     }
 }

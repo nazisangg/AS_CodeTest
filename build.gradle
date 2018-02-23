@@ -78,6 +78,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.webjars:bootstrap:3.3.7")
+    compile('com.opencsv:opencsv:4.1')
 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

@@ -1,12 +1,12 @@
 package Yinong.AlexSolution.Repository;
 
+import Yinong.AlexSolution.Model.PreRequisite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface PreRequisite extends JpaRepository<PreRequisite,Long>{
-    //TODO think about the sql santance of this query
-    @Query("")
+public interface PreRequisiteRepository extends JpaRepository<PreRequisite,Long>{
+    @Query("select u from User u")
     List<PreRequisite> findByCourseName(String courseName);
 }
