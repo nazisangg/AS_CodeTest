@@ -1,5 +1,6 @@
 package Yinong.AlexSolution.Service;
 
+import Yinong.AlexSolution.Model.Courses;
 import Yinong.AlexSolution.Model.User;
 import Yinong.AlexSolution.Repository.CourseRepository;
 import Yinong.AlexSolution.Repository.UserRepository;
@@ -24,6 +25,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void saveUser(User user){
+
+    }
+
+    @Override
+    public void addCourse(User user, Courses courses){
 
     }
 

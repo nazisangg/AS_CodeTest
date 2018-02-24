@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CourseModel {
     private String courseName;
-    private List<String> prerequisite = new ArrayList();
+    private List<CourseModel> prerequisite = new ArrayList();
 
     public CourseModel(String courseName) {
         this.courseName = courseName;
@@ -15,11 +15,11 @@ public class CourseModel {
         return courseName;
     }
 
-    public void addElementToPreRequisite(String prerequisite) {
+    public void addElementToPreRequisite(CourseModel prerequisite) {
         this.prerequisite.add(prerequisite);
     }
 
-    public List<String> getPrerequisite() {
+    public List<CourseModel> getPrerequisite() {
         return prerequisite;
     }
 }

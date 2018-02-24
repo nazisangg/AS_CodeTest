@@ -23,8 +23,10 @@ public class CSVControllerTest {
         csvController.buildCourses();
         HashMap<String, CourseModel> courses = csvController.getCourses_Hash();
         System.out.print(courses.get("1").getCourseName()+"\n");
-        System.out.print(courses.get("2").getPrerequisite().size());
+        System.out.print(courses.get("2").getPrerequisite().get(0).getCourseName());
 
 
     }
+
+
 }

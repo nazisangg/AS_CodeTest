@@ -10,6 +10,7 @@ import com.opencsv.CSVReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class CSVController {
                 String courseKey = newline[0];
                 String preRequisiteKey = newline[1];
                 CourseModel course = this.courses_Hash.get(courseKey);
-                String preRequisiteCourseName = this.courses_Hash.get(preRequisiteKey).getCourseName();
+                CourseModel preRequisiteCourseName = this.courses_Hash.get(preRequisiteKey);
                 course.addElementToPreRequisite(preRequisiteCourseName);
                 //System.out.print(courseKey+"; "+ preRequisiteCourseName+"; here\n");
             }
@@ -68,6 +69,13 @@ public class CSVController {
 
     public HashMap<String, CourseModel> getCourses_Hash() {
         return courses_Hash;
+    }
+
+    public List<CourseModel> getAllCourses(){
+        Collection<CourseModel> courseArray = this.courses_Hash.values();
+        List<CourseModel> courseList = new ArrayList<>();
+        courseList.addAll(courseArray);
+        return courseList;
     }
 
     public CSVReader getCsvReader_Course() {
