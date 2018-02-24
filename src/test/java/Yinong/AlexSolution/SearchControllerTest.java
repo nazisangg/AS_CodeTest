@@ -28,9 +28,9 @@ public class SearchControllerTest {
         DoneList.add(courseList.get(2));
         DoneList.add(courseList.get(5));
         DoneList.add(courseList.get(8));
+        System.out.print("Courses Done: "+ courseList.get(2).getCourseName()+", " + courseList.get(5).getCourseName() + ", " + courseList.get(8).getCourseName()+ "\n" );
         SearchController searchController = new SearchController(DoneList,tagetList,courseList);
         HashMap<Integer,List<CourseModel>> courseOrder = searchController.findAllCourseOrder();
-        System.out.print(courseOrder.size()+"\n");
         for(Integer i = 0; i < courseOrder.size(); i++ ){
             for(CourseModel course: courseOrder.get(i)){
                 System.out.print("Level " + i + " " + course.getCourseName() + "\n");
