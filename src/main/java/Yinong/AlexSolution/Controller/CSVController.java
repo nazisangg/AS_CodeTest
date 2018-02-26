@@ -6,7 +6,7 @@ import Yinong.AlexSolution.Model.CourseModel;
 import com.opencsv.CSVReader;
 
 
-
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CSVController {
-    private final String COURSEFILENAME = "/Users/yinongxia/Documents/AlexSolution_CodeTest/AlexSolution/src/main/resources/static/courses.csv";
-    private final String PREREQUISITEFILENAME = "/Users/yinongxia/Documents/AlexSolution_CodeTest/AlexSolution/src/main/resources/static/prerequisites.csv";
+    private File directory = new File("");//设定为当前文件夹
+    String path = directory.getCanonicalPath();
+    private final String COURSEFILENAME = path+"/src/main/resources/static/list.csv";
+    private final String PREREQUISITEFILENAME = path+"/src/main/resources/static/relation.csv";
 
     private CourseRepository courseRepository;
 

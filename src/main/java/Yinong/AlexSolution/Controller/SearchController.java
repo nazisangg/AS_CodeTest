@@ -71,6 +71,9 @@ public class SearchController {
         int index = 0;
         while (!undoneCourses.isEmpty()){
             List<CourseModel> coursesCanBeEnrolled = courseSearchLoop(undoneCourses);
+            if(coursesCanBeEnrolled.size() == 0 ){
+                break;
+            }
             orderedCourseList.put(index,coursesCanBeEnrolled);
             index++;
             this.coursesDone.addAll(coursesCanBeEnrolled);
