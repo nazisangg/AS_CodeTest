@@ -104,7 +104,7 @@ canBeEnrolled(course, Donelist):
 
 The unit test is passed in SearchControllerTest.java
 
-![avatar](/Users/yinongxia/Documents/AlexSolution_CodeTest/AlexSolution/src/main/resources/static/SearchUnitTestResult.jpg)
+![avatar](https://raw.githubusercontent.com/nazisangg/AS_CodeTest/master/src/main/resources/static/SearchUnitTestResult.jpg)
 
      
         
