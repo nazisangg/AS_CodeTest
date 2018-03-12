@@ -20,9 +20,16 @@ public class Courses{
     @OneToMany(mappedBy = "courses")
     private Set<PreRequisite> preRequisites;
 
-    public Courses(String courseName, Set<User> users) {
+    public Courses(String courseName){
         this.courseName = courseName;
-        this.users = users;
+    }
+
+    public Set<PreRequisite> getPreRequisites() {
+        return preRequisites;
+    }
+
+    public void setPreRequisites(Set<PreRequisite> preRequisites) {
+        this.preRequisites = preRequisites;
     }
 
     public Courses(){
@@ -51,5 +58,13 @@ public class Courses{
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public void addUsers(User user){
+        this.users.add(user);
+    }
+
+    public void addPreRequisite(PreRequisite preRequisite){
+        this.preRequisites.add(preRequisite);
     }
 }

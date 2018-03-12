@@ -6,10 +6,13 @@ import Yinong.AlexSolution.Repository.CourseRepository;
 import Yinong.AlexSolution.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service("userService")
 public class UserServiceImpl implements UserService{
 
     @Autowired
@@ -25,12 +28,27 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void saveUser(User user){
+        userRepository.save(user);
+    }
+
+    @Override
+    public void addCourse(User user, String courseName){
+        //
+        Courses course = courseRepository.findByCourseName(courseName);
+        if(course == null){
+            course = new Courses(courseName);
+            courseRepository.save(course);
+        }
+        user.addCourses(course);
 
     }
 
     @Override
-    public void addCourse(User user, Courses courses){
-
+    public void deleteCourse(User user, String courseName){
+        Courses course = courseRepository.findByCourseName(courseName);
+        if(course != null){
+            user.deleteCourse(course);
+        }
     }
 
     @Override

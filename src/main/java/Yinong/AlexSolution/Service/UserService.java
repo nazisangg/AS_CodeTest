@@ -11,13 +11,17 @@ import java.util.Optional;
 public interface UserService {
     void saveUser(User user);
 
-    void addCourse(User user, Courses courses);
+    void addCourse(User user, String courseName);
+
+    void deleteCourse(User user, String courseName);
 
     List<User> findByExample(User example);
 
     List<User> findBySpecification(Specification<User> specification);
 
     User findUserByUsername(String username);
+
+
     //
 
 }

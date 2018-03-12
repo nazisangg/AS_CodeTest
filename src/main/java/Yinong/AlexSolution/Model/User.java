@@ -69,4 +69,8 @@ public class User{
     public void addCourses(Courses course){
         this.courses.add(course);
     }
+
+    public void deleteCourse(Courses course){
+        this.courses.remove(course);
+    }
 }

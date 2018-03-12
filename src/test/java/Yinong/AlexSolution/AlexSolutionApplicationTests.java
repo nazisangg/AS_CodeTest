@@ -22,9 +22,9 @@ public class AlexSolutionApplicationTests {
 	@Test
 	public void UserRepositoryTest() {
 		Set<Courses> courses = new HashSet<>();
-		userRepository.save(new User("YinongXia", "summer1993"));
+		//userRepository.save(new User("YinongXia", "summer1993"));
 		Assert.assertEquals(1, userRepository.findAll().size());
-		Assert.assertEquals("YinongXia", userRepository.findByUsername("YinongXia").getUsername());
+		Assert.assertEquals("YinongXia", userRepository.findByUsername("YinongXia2"));
 		userRepository.deleteAll();
 		Assert.assertEquals(0, userRepository.findAll().size());
 	}
