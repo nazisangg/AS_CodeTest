@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService{
             courseRepository.save(course);
         }
         user.addCourses(course);
+        //course.addUsers(user);
 
     }
 
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService{
         if(course != null){
             user.deleteCourse(course);
         }
+
     }
 
     @Override

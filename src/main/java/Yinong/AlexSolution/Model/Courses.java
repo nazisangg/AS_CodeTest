@@ -1,5 +1,7 @@
 package Yinong.AlexSolution.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ public class Courses{
     private String courseName;
 
     @ManyToMany(mappedBy = "courses")
+    @JsonBackReference
     private Set<User> users;
 
     @OneToMany(mappedBy = "courses")

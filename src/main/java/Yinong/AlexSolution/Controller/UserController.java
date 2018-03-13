@@ -1,5 +1,6 @@
 package Yinong.AlexSolution.Controller;
 
+import Yinong.AlexSolution.Model.APIResponse;
 import Yinong.AlexSolution.Model.User;
 import Yinong.AlexSolution.Repository.UserRepository;
 import Yinong.AlexSolution.Service.UserService;
@@ -7,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/homes")
 public class UserController {
 
     @Autowired
@@ -22,7 +26,7 @@ public class UserController {
 
 
 
-    @PostMapping(path = "/user")
+    @PostMapping(path = "/users")
     public @ResponseBody
     String create(@RequestBody User user){
 
@@ -34,7 +38,7 @@ public class UserController {
     }
 
     // It seem that the re quest body should be something else
-    @PutMapping(value = "/user/addcourse/{courseName}")
+    @PutMapping(value = "/users/addcourse/{courseName}")
     public User addcourse(@PathVariable String courseName, @RequestBody User user ){
         String username = user.getUsername();
         user = userRepository.findByUsername(username);
@@ -42,10 +46,11 @@ public class UserController {
             userService.addCourse(user,courseName);
         }catch (Exception e){
         }
-        return user;
+
+        return userRepository.save(user);
     }
 
-    @PutMapping(value = "/user/deletecourse/{courseName}")
+    @PutMapping(value = "/users/deletecourse/{courseName}")
     public User deleteCourse(@PathVariable String courseName, @RequestBody User user){
         String username = user.getUsername();
         user = userRepository.findByUsername(username);
@@ -54,25 +59,41 @@ public class UserController {
         }catch (Exception e){
 
         }
-        return user;
+        return userRepository.save(user);
     }
 
-    @RequestMapping(value = "user/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "users/{username}", method = RequestMethod.GET)
     private User get(@PathVariable String username){
         return userRepository.findByUsername(username);
     }
 
-    @RequestMapping(value = "user/{username}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "users/getbyid/{id}", method = RequestMethod.GET)
+    private User getById(@PathVariable Long id){
+        return userRepository.findById(id);
+    }
+
+    @RequestMapping(value = "users/{username}", method = RequestMethod.DELETE)
     private User delete(@PathVariable String username){
         User user = userRepository.findByUsername(username);
         userRepository.delete(user);
         return user;
     }
 
-    @RequestMapping(value = "user/{password}", method = RequestMethod.PUT)
+    @RequestMapping(value = "users/{password}", method = RequestMethod.PUT)
     private User update(@PathVariable String password, @RequestBody User user){
         user.setPassword(password);
         return userRepository.save(user);
+    }
+
+    @RequestMapping(value = "users/getAll", method = RequestMethod.GET )
+    public @ResponseBody
+    APIResponse getAllUsers(){
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setErrorCode("N/A");
+        apiResponse.setErrorMessage("N/A");
+        apiResponse.setSuccess(true);
+        apiResponse.setResponseObject(userRepository.findAllUsers());
+        return apiResponse;
     }
 
 

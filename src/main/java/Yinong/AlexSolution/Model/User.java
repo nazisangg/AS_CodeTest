@@ -1,13 +1,20 @@
 package Yinong.AlexSolution.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "user")
 @Table(name = "user")
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     @Column(name = "userid")
     private Long id;
 
@@ -18,12 +25,19 @@ public class User{
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     @JoinTable(
             name = "finisedCourses",
             joinColumns = @JoinColumn(name = "user_userid", referencedColumnName = "userid"),
             inverseJoinColumns = @JoinColumn(name = "courses_courseid", referencedColumnName = "courseid")
     )
     private Set<Courses> courses;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "roleid"))
+    private Set<Role> roles;
+
 
     public User(String username, String password) {
         this.username = username;
@@ -32,6 +46,14 @@ public class User{
 
     public User(){
 
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
