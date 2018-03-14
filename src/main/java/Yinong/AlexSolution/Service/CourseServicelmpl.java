@@ -4,13 +4,16 @@ import Yinong.AlexSolution.Controller.CSVController;
 import Yinong.AlexSolution.Model.CourseModel;
 import Yinong.AlexSolution.Model.Courses;
 import Yinong.AlexSolution.Model.PreRequisite;
+import Yinong.AlexSolution.Model.User;
 import Yinong.AlexSolution.Repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service("courseService")
 public class CourseServicelmpl implements CourseService {
 
     @Autowired
@@ -45,5 +48,14 @@ public class CourseServicelmpl implements CourseService {
         preRequisiteList.addAll(courses.getPreRequisites());
         Optional<List<PreRequisite>> optionalPreRequisiteList = Optional.of(preRequisiteList);
         return optionalPreRequisiteList;
+    }
+
+    @Override
+
+    public List<User> findAllUsers(Courses courses){
+        List<User> userList = new ArrayList<>();
+        userList.addAll(courses.getUsers());
+        Optional<List<User>> optionalUserList = Optional.of(userList);
+        return optionalUserList.get();
     }
 }

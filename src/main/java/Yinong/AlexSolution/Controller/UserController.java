@@ -86,13 +86,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "users/getAll", method = RequestMethod.GET )
-    public @ResponseBody
-    APIResponse getAllUsers(){
+    public APIResponse getAllUsers(){
         APIResponse apiResponse = new APIResponse();
         apiResponse.setErrorCode("N/A");
         apiResponse.setErrorMessage("N/A");
         apiResponse.setSuccess(true);
-        apiResponse.setResponseObject(userRepository.findAllUsers());
+        apiResponse.setResponseObject(userRepository.findAll());
         return apiResponse;
     }
 

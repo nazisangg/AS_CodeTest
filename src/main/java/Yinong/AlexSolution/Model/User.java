@@ -14,7 +14,6 @@ import java.util.Set;
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     @Column(name = "userid")
     private Long id;
 
@@ -25,7 +24,6 @@ public class User{
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonManagedReference
     @JoinTable(
             name = "finisedCourses",
             joinColumns = @JoinColumn(name = "user_userid", referencedColumnName = "userid"),
@@ -34,7 +32,6 @@ public class User{
     private Set<Courses> courses;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonManagedReference
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "roleid"))
     private Set<Role> roles;
 
